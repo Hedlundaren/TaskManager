@@ -1,3 +1,5 @@
+
+
 class Function:
 	funCount = 0
 	def __init__(self, name, path, type):

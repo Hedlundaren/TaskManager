@@ -1,6 +1,20 @@
+
+
 import subprocess
 import os
+import time
 from random import randint
+from load_data import load_greetings
+
+def get_delta_time(tic, toc):
+	return toc - tic
+
+def print_delta_time(tic, toc):
+	deltaTime = get_delta_time(tic, toc)
+	print("\n")
+	mess = deltaTime
+	print(mess)
+	return
 
 
 def search_and_deploy(function, functions):	
@@ -16,10 +30,20 @@ def search_and_deploy(function, functions):
 	if(id_of_function == -1):
 		print("No '" + function + "' exists.")
 	else:
+		
+		### Executables ###
 		if(functions[id_of_function].type == "exe_dir"):
-			subprocess.call([functions[id_of_function].path])
+			p = subprocess.call([functions[id_of_function].path])
+		
+		### Music ###
 		elif(functions[id_of_function].type == "music_dir"):
-			os.startfile("assets\hatkarlek.mp3")
+			music(functions[id_of_function].path)
+		
+		### Info ###
+		elif(functions[id_of_function].type == "info"):
+			info(functions[id_of_function].name)
+			
+		### Communication ###
 		elif(functions[id_of_function].type == "comm"):
 			communicate(function)
 			
@@ -33,20 +57,19 @@ def deploy_all(functions):
 		fun_id += 1
 	return
 
+def music(path):
+	os.startfile(path)
+	
+def info(info):
+	print("no")
+		
+	
 def communicate(input):
-
 	greetings = []
-	greetings.append("Hello Simon.")
-	greetings.append("Pleased to see you too, Simon.")
-	greetings.append("Greetings.")
-	greetings.append("Well, hello there.")
-	greetings.append("Hello there, Simon.")
-	greetings.append("Good day to you, Simon.")
-	greetings.append("Hello Simon.")
-	greetings.append("Hello Simon.")
-	greetings.append("Hello Simon.")
+	load_greetings(greetings)
 	greeting = randint(0,len(greetings) - 1)
 	print("\n" + greetings[greeting])
+	time.sleep(0.6)
 		
 		
 		
