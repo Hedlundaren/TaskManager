@@ -1,4 +1,7 @@
 import subprocess
+import os
+from random import randint
+
 
 def search_and_deploy(function, functions):	
 	fun_id = 0
@@ -13,7 +16,14 @@ def search_and_deploy(function, functions):
 	if(id_of_function == -1):
 		print("No '" + function + "' exists.")
 	else:
-		subprocess.call([functions[id_of_function].path])
+		if(functions[id_of_function].type == "exe_dir"):
+			subprocess.call([functions[id_of_function].path])
+		elif(functions[id_of_function].type == "music_dir"):
+			os.startfile("assets\hatkarlek.mp3")
+		elif(functions[id_of_function].type == "comm"):
+			communicate(function)
+			
+
 	return
 		
 def deploy_all(functions):
@@ -22,3 +32,29 @@ def deploy_all(functions):
 		subprocess.call([functions[fun_id].path])
 		fun_id += 1
 	return
+
+def communicate(input):
+
+	greetings = []
+	greetings.append("Hello Simon.")
+	greetings.append("Pleased to see you too, Simon.")
+	greetings.append("Greetings.")
+	greetings.append("Well, hello there.")
+	greetings.append("Hello there, Simon.")
+	greetings.append("Good day to you, Simon.")
+	greetings.append("Hello Simon.")
+	greetings.append("Hello Simon.")
+	greetings.append("Hello Simon.")
+	greeting = randint(0,len(greetings) - 1)
+	print("\n" + greetings[greeting])
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
