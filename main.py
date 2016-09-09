@@ -31,8 +31,10 @@ while(function != "quit" and function != "q"):
 		else:
 			search_and_deploy(function, functions)		
 	
+	
 	if(function != "dt"):
 		toc = time.clock()
+		
 	function = input("Task: ")
 	function = function.lower()
 

@@ -1,21 +1,19 @@
 
 
+# External 
 import subprocess
 import os
 import time
 from random import randint
+from datetime import datetime
+
+# Includes
 from load_data import load_greetings
+from sub_manager_functions import *
 
-def get_delta_time(tic, toc):
-	return toc - tic
 
-def print_delta_time(tic, toc):
-	deltaTime = get_delta_time(tic, toc)
-	print("\n")
-	mess = deltaTime
-	print(mess)
-	return
 
+	
 
 def search_and_deploy(function, functions):	
 	fun_id = 0
@@ -47,7 +45,6 @@ def search_and_deploy(function, functions):
 		elif(functions[id_of_function].type == "comm"):
 			communicate(function)
 			
-
 	return
 		
 def deploy_all(functions):
@@ -56,21 +53,27 @@ def deploy_all(functions):
 		subprocess.call([functions[fun_id].path])
 		fun_id += 1
 	return
-
+	
 def music(path):
 	os.startfile(path)
 	
 def info(info):
-	print("no")
+	if(info == "time"):
+		print("")
+		print("Executed time: ", time.clock())
+		print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+	if(info == "i"):
+		print_general_info()
+	if(info == "help"):
+		print_help()
 		
-	
 def communicate(input):
 	greetings = []
 	load_greetings(greetings)
 	greeting = randint(0,len(greetings) - 1)
 	print("\n" + greetings[greeting])
 	time.sleep(0.6)
-		
+	
 		
 		
 		

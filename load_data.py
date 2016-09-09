@@ -4,8 +4,10 @@ from Function import *
 
 
 """
-Load data 
+This file is only for loading data of different types.
 """
+
+
 def load_inputs(functions):	
 
 	
@@ -46,8 +48,12 @@ def load_inputs(functions):
 	functions.append(Function("ni hao bithc", null, "comm"))
 	functions.append(Function("ni hao bith", null, "comm"))
 	
+	
 	### Info ###
 	functions.append(Function("dt", null, "dt"))
+	functions.append(Function("time", null, "info"))
+	functions.append(Function("i", null, "info"))
+	functions.append(Function("help", null, "info"))
 	
 	### Music and Sounds ###
 	tour = "assets\hatkarlek.mp3"
