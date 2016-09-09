@@ -31,7 +31,7 @@ def search_and_deploy(function, functions):
 		
 		### Executables ###
 		if(functions[id_of_function].type == "exe_dir"):
-			if(function == "py"):
+			if(function == "py" or function == "calc"):
 				print(Colors.HEADER)
 				p = subprocess.call([functions[id_of_function].path])
 				print(Colors.ENDC)
