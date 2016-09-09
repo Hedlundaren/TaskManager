@@ -50,10 +50,10 @@ def load_inputs(functions):
 	
 	
 	### Info ###
-	functions.append(Function("dt", null, "dt"))
 	functions.append(Function("time", null, "info"))
 	functions.append(Function("i", null, "info"))
 	functions.append(Function("help", null, "info"))
+	functions.append(Function("list", null, "info"))
 	
 	### Music and Sounds ###
 	tour = "assets\hatkarlek.mp3"

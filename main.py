@@ -11,9 +11,9 @@ functions = []
 load_inputs(functions)
 
 
-print("\n=================\n Welcome, Simon.")
+print(Colors.OKGREEN, "\n=================\n Welcome, Simon.")
 print("=================")
-
+print("", Colors.ENDC)
 
 function = input("Task: ")
 function = function.lower()

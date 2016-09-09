@@ -31,15 +31,20 @@ def search_and_deploy(function, functions):
 		
 		### Executables ###
 		if(functions[id_of_function].type == "exe_dir"):
-			p = subprocess.call([functions[id_of_function].path])
-		
+			if(function == "py"):
+				print(Colors.HEADER)
+				p = subprocess.call([functions[id_of_function].path])
+				print(Colors.ENDC)
+			else:
+				p = subprocess.call([functions[id_of_function].path])
+				
 		### Music ###
 		elif(functions[id_of_function].type == "music_dir"):
 			music(functions[id_of_function].path)
 		
 		### Info ###
 		elif(functions[id_of_function].type == "info"):
-			info(functions[id_of_function].name)
+			info(functions[id_of_function].name, functions)
 			
 		### Communication ###
 		elif(functions[id_of_function].type == "comm"):
@@ -57,7 +62,7 @@ def deploy_all(functions):
 def music(path):
 	os.startfile(path)
 	
-def info(info):
+def info(info, functions):
 	if(info == "time"):
 		print("")
 		print("Executed time: ", time.clock())
@@ -66,12 +71,14 @@ def info(info):
 		print_general_info()
 	if(info == "help"):
 		print_help()
+	if(info == "list"):
+		list_data(functions)
 		
 def communicate(input):
 	greetings = []
 	load_greetings(greetings)
 	greeting = randint(0,len(greetings) - 1)
-	print("\n" + greetings[greeting])
+	print(Colors.OKGREEN, "\n" + greetings[greeting], Colors.ENDC)
 	time.sleep(0.6)
 	
 		
