@@ -5,10 +5,10 @@ from Function import *
 chrome = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 git = 'C:\Program Files\Git\git-bash.exe'
 gp = "C:\Program Files (x86)\Guitar Pro 5\GP5.exe"
-py = "C:\Program Files (x86)\Python35"
+py = "C:\Program Files (x86)\Python35\python.exe"
 
 functions = {}
-functions[0] = Function("chrome", chrome)
+functions[0] = Function("c", chrome)
 functions[1] = Function("git", git)
 functions[2] = Function("gp", gp)
 functions[3] = Function("py", py)
