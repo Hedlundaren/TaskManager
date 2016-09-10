@@ -57,13 +57,14 @@ def load_inputs(functions):
 	functions.append(Function("list comm", null, "info"))
 	functions.append(Function("list music", null, "info"))
 	functions.append(Function("list info", null, "info"))
+	functions.append(Function("list ai", null, "info"))
 	
 	### AI ###
 	memory = "memory.txt"
-	functions.append(Function("mem .", memory, "AI"))
-	functions.append(Function("add mem", memory, "AI"))
-	functions.append(Function("clean mem", memory, "AI"))
-	functions.append(Function("del mem", memory, "AI"))
+	functions.append(Function("mem .", memory, "ai"))
+	functions.append(Function("mem add", memory, "ai"))
+	functions.append(Function("mem clean", memory, "ai"))
+	functions.append(Function("mem del", memory, "ai"))
 	
 	### Music and Sounds ###
 	tour = "assets\hatkarlek.mp3"
@@ -91,6 +92,13 @@ def load_curse_words(curse_words):
 	curse_words.append("fuuck")
 	curse_words.append("shit")
 	curse_words.append("cunt")
+	
+def load_answers(answers):
+	answers.append("Good question, Simon.")
+	answers.append("I sure know the answer.")
+	answers.append("You should know.")
+	
+
 	
 	
 	

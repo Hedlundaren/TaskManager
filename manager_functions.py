@@ -13,8 +13,6 @@ from sub_manager_functions import *
 
 
 
-	
-
 def search_and_deploy(function, functions):	
 	fun_id = 0
 	id_of_function = -1
@@ -43,7 +41,7 @@ def search_and_deploy(function, functions):
 			info(functions[id_of_function].name, functions)
 			
 		### Info ###
-		elif(functions[id_of_function].type == "AI"):
+		elif(functions[id_of_function].type == "ai"):
 			AI(functions, id_of_function)
 			
 		### Communication ###
@@ -91,12 +89,27 @@ def AI(functions, id):
 	
 	if(functions[id].name == "mem ."):
 		display_memory(functions[id].path)
-	if(functions[id].name == "add mem"):
+	if(functions[id].name == "mem add"):
 		add_memory(functions[id].path)
-	if(functions[id].name == "clean mem"):
+	if(functions[id].name == "mem clean"):
 		open(functions[id].path, 'w').close()
-	if(functions[id].name == "del mem"):
-		del_memory(functions[id].path)
+	if(functions[id].name == "mem del"):
+		#del_memory(functions[id].path)
+
+
+		path = "memory.txt"
+		f = open(path,"r")
+		lines = f.readlines()
+
+		f.close()
+		f = open(path,"w")
+		
+		h = str(input("Delete memory: "))
+		h = h + "\n"
+		for line in lines:
+			if(line != h):
+				f.write(line)
+		f.close()
 		
 def add_memory(path):
 	print("", Colors.OKGREEN)
@@ -112,7 +125,6 @@ def del_memory(path):
 	display_memory(path)
 	print(Colors.FAIL)
 	del_mem = input("Delete memory: ") 
-	print(Colors.ENDC)
 	f = open(path,"r")
 	lines = f.readlines()
 

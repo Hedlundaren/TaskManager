@@ -1,5 +1,7 @@
 from Colors import *
 from load_data import *
+from random import randint
+import time
 
 def get_delta_time(tic, toc):
 	return toc - tic
@@ -54,23 +56,41 @@ def list_data(functions, function):
 
 def interpret_input(input):
 	response_found = False
-	curse_words = []
 	
+	# Answer question
+	answers = []
+	load_answers(answers)
+	if(input[-1:] == '?' or input[-2:] == '?!'):
+		answer = randint(0,len(answers) - 1)
+		response_found = True
+		print(Colors.OKGREEN, "\n" + answers[answer], Colors.ENDC)
+		time.sleep(0.6)
+	
+	# Check cursing
+	curse_words = []
 	load_curse_words(curse_words)
 	word_id = 0
-	
 	while(word_id < len(curse_words)):
 		part_id = 0
 		parts = input.partition(" ")
 		while(part_id < len(parts)):
 			if(parts[part_id] == curse_words[word_id]):
-				print("")
-				print(Colors.OKGREEN, "Are you angry, Simon?", Colors.ENDC)
+				print("", Colors.OKGREEN)
+				print("Are you angry, Simon?", Colors.ENDC)
 				response_found = True
 			part_id += 1
 		word_id += 1
-	
-	
-	
+		
+	# specific answers
+	if(input == "thank you"):
+		print("", Colors.OKGREEN)
+		print("You are welcome.", Colors.ENDC)
+		response_found = True
+		
+	if(input == "yolo"):
+		print("", Colors.OKGREEN)
+		print("You only live once, Simon.", Colors.ENDC)
+		response_found = True
+		
 	if(response_found == False):
-		print(input, " is a weird input.")
+		print(input, "is a weird input.")

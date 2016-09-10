@@ -27,6 +27,9 @@ while(function != "quit" and function != "q"):
 	if(function != "dt"):
 		tic = time.clock()
 	
+	if(function == "qq"):
+		os.startfile("")
+		
 	if(function != "" and function != "quit" and function != "q"):
 		if(function == "all"):
 			deploy_all(functions)
