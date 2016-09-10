@@ -57,7 +57,13 @@ def load_inputs(functions):
 	functions.append(Function("list comm", null, "info"))
 	functions.append(Function("list music", null, "info"))
 	functions.append(Function("list info", null, "info"))
-
+	
+	### AI ###
+	memory = "memory.txt"
+	functions.append(Function("mem .", memory, "AI"))
+	functions.append(Function("add mem", memory, "AI"))
+	functions.append(Function("clean mem", memory, "AI"))
+	functions.append(Function("del mem", memory, "AI"))
 	
 	### Music and Sounds ###
 	tour = "assets\hatkarlek.mp3"

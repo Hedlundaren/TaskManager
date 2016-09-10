@@ -13,11 +13,11 @@ def print_delta_time(tic, toc):
 
 def print_general_info():
 	import platform
-	print("")
+	print(Colors.HEADER)
 	print("General info: ")
 	print(platform.uname())
 	print(platform.processor())
-	print("")
+	print(Colors.ENDC)
 
 def print_help():
 	print("")

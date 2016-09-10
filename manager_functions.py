@@ -42,6 +42,10 @@ def search_and_deploy(function, functions):
 		elif(functions[id_of_function].type == "info"):
 			info(functions[id_of_function].name, functions)
 			
+		### Info ###
+		elif(functions[id_of_function].type == "AI"):
+			AI(functions, id_of_function)
+			
 		### Communication ###
 		elif(functions[id_of_function].type == "comm"):
 			communicate(function)
@@ -57,9 +61,7 @@ def deploy_all(functions):
 
 def exe(functions, id):
 	if(functions[id].name == "py" or functions[id].name == "calc"):
-		print(Colors.HEADER)
 		p = subprocess.call([functions[id].path])
-		print(Colors.ENDC)
 	else:
 		subprocess.Popen([functions[id].path], shell=True)
 		
@@ -85,13 +87,47 @@ def communicate(input):
 	print(Colors.OKGREEN, "\n" + greetings[greeting], Colors.ENDC)
 	time.sleep(0.6)
 	
+def AI(functions, id):
+	
+	if(functions[id].name == "mem ."):
+		display_memory(functions[id].path)
+	if(functions[id].name == "add mem"):
+		add_memory(functions[id].path)
+	if(functions[id].name == "clean mem"):
+		open(functions[id].path, 'w').close()
+	if(functions[id].name == "del mem"):
+		del_memory(functions[id].path)
+		
+def add_memory(path):
+	print("", Colors.OKGREEN)
+	new_mem = input("Add memory: ")
+	print(Colors.ENDC)
+	file = open(path, 'a')
+	file_input = "\n" + new_mem
+	file.write(file_input)
+	file.close()
+	display_memory(path)
+	
+def del_memory(path):
+	display_memory(path)
+	print(Colors.FAIL)
+	del_mem = input("Delete memory: ") 
+	print(Colors.ENDC)
+	f = open(path,"r")
+	lines = f.readlines()
 
+	f.close()
+	f = open(path,"w")
+
+	for line in lines:
+		if line != del_mem+"\n":
+			f.write(line)
+	f.close()
+	display_memory(path)
 		
-		
-		
-		
-		
-		
-		
-		
+def display_memory(path):
+	print(Colors.WARNING)
+	file = open(path, 'r+')
+	print(file.read(), Colors.ENDC)
+	file.close()
 		

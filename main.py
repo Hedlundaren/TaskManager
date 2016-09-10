@@ -17,7 +17,9 @@ print(Colors.OKGREEN, "\n=================\n Welcome, Simon.")
 print("=================")
 print("", Colors.ENDC)
 
-function = input("Task: ")
+
+function = input("Task: ")	
+		
 function = function.lower()
 print(function)
 while(function != "quit" and function != "q"):
