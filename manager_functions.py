@@ -26,20 +26,16 @@ def search_and_deploy(function, functions):
 		fun_id += 1
 		
 	if(id_of_function == -1):
-		print("No '" + function + "' exists.")
+		# Input is not registered
+		interpret_input(function)
 	else:
 		
 		### Executables ###
-		if(functions[id_of_function].type == "exe_dir"):
-			if(function == "py" or function == "calc"):
-				print(Colors.HEADER)
-				p = subprocess.call([functions[id_of_function].path])
-				print(Colors.ENDC)
-			else:
-				p = subprocess.call([functions[id_of_function].path])
+		if(functions[id_of_function].type == "exe"):
+			exe(functions, id_of_function)
 				
 		### Music ###
-		elif(functions[id_of_function].type == "music_dir"):
+		elif(functions[id_of_function].type == "music"):
 			music(functions[id_of_function].path)
 		
 		### Info ###
@@ -58,7 +54,15 @@ def deploy_all(functions):
 		subprocess.call([functions[fun_id].path])
 		fun_id += 1
 	return
-	
+
+def exe(functions, id):
+	if(functions[id].name == "py" or functions[id].name == "calc"):
+		print(Colors.HEADER)
+		p = subprocess.call([functions[id].path])
+		print(Colors.ENDC)
+	else:
+		subprocess.Popen([functions[id].path], shell=True)
+		
 def music(path):
 	os.startfile(path)
 	
@@ -67,12 +71,12 @@ def info(info, functions):
 		print("")
 		print("Executed time: ", time.clock())
 		print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-	if(info == "i"):
+	elif(info == "i"):
 		print_general_info()
-	if(info == "help"):
+	elif(info == "help"):
 		print_help()
-	if(info == "list"):
-		list_data(functions)
+	elif(info[:4] == "list"):
+		list_data(functions, info)
 		
 def communicate(input):
 	greetings = []
@@ -81,7 +85,7 @@ def communicate(input):
 	print(Colors.OKGREEN, "\n" + greetings[greeting], Colors.ENDC)
 	time.sleep(0.6)
 	
-		
+
 		
 		
 		

@@ -1,4 +1,5 @@
 from Colors import *
+from load_data import *
 
 def get_delta_time(tic, toc):
 	return toc - tic
@@ -22,23 +23,54 @@ def print_help():
 	print("")
 	print("There is no help here. Stupid.")
 	
-def list_data(functions):
+def list_data(functions, function):
+	
+	type = function.partition(" ")[2]
+	
 	fun_id = 0
 	current_type = functions[0].type
-	
-	print(Colors.OKBLUE, "")
-	print("type: ", current_type, Colors.ENDC)
+	if(type == '.'):
+		print(Colors.OKBLUE, "")
+		print("type: ", current_type, Colors.ENDC)
+	else:
+		print(Colors.OKBLUE, "")
+		print("type: ", type, Colors.ENDC)
+
 	while(fun_id < functions[0].funCount):
 		
-		if(functions[fun_id].type != current_type):
-			current_type = functions[fun_id].type
-			print("", Colors.OKBLUE)
-			print("type: ", current_type, Colors.ENDC)
-
-			
-		functions[fun_id].display(functions)
+		if(type == '.'):
+			if(functions[fun_id].type != current_type):
+				current_type = functions[fun_id].type
+				print("", Colors.OKBLUE)
+				print("type: ", current_type, Colors.ENDC)
+			functions[fun_id].display(functions)
 		
+		elif(functions[fun_id].type == type):
+			print("name: ", functions[fun_id].name, Colors.ENDC)
 		fun_id += 1
 	print("\n")
 	
 	return
+
+def interpret_input(input):
+	response_found = False
+	curse_words = []
+	
+	load_curse_words(curse_words)
+	word_id = 0
+	
+	while(word_id < len(curse_words)):
+		part_id = 0
+		parts = input.partition(" ")
+		while(part_id < len(parts)):
+			if(parts[part_id] == curse_words[word_id]):
+				print("")
+				print(Colors.OKGREEN, "Are you angry, Simon?", Colors.ENDC)
+				response_found = True
+			part_id += 1
+		word_id += 1
+	
+	
+	
+	if(response_found == False):
+		print(input, " is a weird input.")
