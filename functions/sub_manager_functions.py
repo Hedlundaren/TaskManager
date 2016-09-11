@@ -1,5 +1,5 @@
-from Colors import *
-from load_data import *
+from Class.Colors import *
+from functions.load_data import *
 from random import randint
 import time
 

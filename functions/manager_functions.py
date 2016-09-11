@@ -1,15 +1,14 @@
-
-
 # External 
 import subprocess
 import os
 import time
+
 from random import randint
 from datetime import datetime
 
 # Includes
-from load_data import load_greetings
-from sub_manager_functions import *
+from functions.load_data import load_greetings
+from functions.sub_manager_functions import *
 
 
 
@@ -69,7 +68,7 @@ def music(path):
 def info(info, functions):
 	if(info == "time"):
 		print("")
-		print("Executed time: ", time.clock())
+		print("I have been alive for: ", time.clock())
 		print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 	elif(info == "i"):
 		print_general_info()
@@ -94,22 +93,7 @@ def AI(functions, id):
 	if(functions[id].name == "mem clean"):
 		open(functions[id].path, 'w').close()
 	if(functions[id].name == "mem del"):
-		#del_memory(functions[id].path)
-
-
-		path = "memory.txt"
-		f = open(path,"r")
-		lines = f.readlines()
-
-		f.close()
-		f = open(path,"w")
-		
-		h = str(input("Delete memory: "))
-		h = h + "\n"
-		for line in lines:
-			if(line != h):
-				f.write(line)
-		f.close()
+		del_memory(functions[id].path)
 		
 def add_memory(path):
 	print("", Colors.OKGREEN)
@@ -121,21 +105,17 @@ def add_memory(path):
 	file.close()
 	display_memory(path)
 	
-def del_memory(path):
-	display_memory(path)
-	print(Colors.FAIL)
-	del_mem = input("Delete memory: ") 
+def del_memory(path):	
 	f = open(path,"r")
 	lines = f.readlines()
-
 	f.close()
 	f = open(path,"w")
-
+	h = str(input("Delete memory: "))
+	h = h + "\n"
 	for line in lines:
-		if line != del_mem+"\n":
+		if(line != h):
 			f.write(line)
 	f.close()
-	display_memory(path)
 		
 def display_memory(path):
 	print(Colors.WARNING)

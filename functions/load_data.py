@@ -1,5 +1,5 @@
 
-from Function import *
+from Class.Function import *
 
 
 
@@ -60,7 +60,7 @@ def load_inputs(functions):
 	functions.append(Function("list ai", null, "info"))
 	
 	### AI ###
-	memory = "memory.txt"
+	memory = "memory/memory.txt"
 	functions.append(Function("mem .", memory, "ai"))
 	functions.append(Function("mem add", memory, "ai"))
 	functions.append(Function("mem clean", memory, "ai"))
